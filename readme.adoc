@@ -1,0 +1,8 @@
+# 12 factor Demo Web Application
+
+Hosted on [quay.io](https://quay.io/repository/woditschka/tfa-web?tag=latest&tab=tags)
+```
+docker run -it quay.io/woditschka/tfa-web
+```
+
+[![Build Status](https://travis-ci.org/woditschka-os/demo-tfa-web.svg?branch=master)](https://travis-ci.org/woditschka-os/demo-tfa-web)

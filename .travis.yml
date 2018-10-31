@@ -1,0 +1,19 @@
+language: java
+jdk: openjdk11
+
+sudo: required
+dist: trusty
+
+services:
+  - docker
+
+script:
+  - mvn clean verify
+  - echo "$DOCKER_PASSWORD" | docker login quay.io -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t quay.io/woditschka/tfa-web .
+  - docker push quay.io/woditschka/tfa-web:7
+
+env:
+  global:
+    - secure: HTUQMio9zMd5aoXXR6n+3eXqWggFxNjart2+Sbg7OKHdrN6+OftVJGM5P0aBd6qSTyq9o5jjaTMZ0NdIPBhoIaMfBXvf7d5vjcHR0KOcfdzmDEfTyoAIAHUDaXTXCivy+b7i0WqcM7MWgxSvW9YXO+rBhng/lJInTlhmFpNyoeuTCqWnZTcoXLSARWUXVCIzmr4mKw5rBLe95mWoM3yFtZyMqNy/dv5PvE+3KwZnVBVZSDZCHUQJrkMn0bFkds/YRjOUCz9D5sRUGLbb+dthpyUrtcsKwgKCT342erOXEUbW9zJwekLuH6Pl8OcrmHiDbiaaF0vsMcB1OBy8Npa77Fn/mB0O14DyQJ6G3gEts4f/eCWNWeA+gAAslDxWdf/0razBOsBOrQfNG/1Iz4/PTrYEg+bTCwj3Rr6Cmc5Xx6tg0F3msOhivc0N58jhHZXAGAZA6U9OxUrBQlyFax1GJXwWKn/MVZlV96uMPzg/oipXPztQq2GvOsMGLbsl0/eKFd+GSf7/goWUNYrkYPFopLavrbNIpe/e2XATx5XOSSfUgZ5lSQ2hpxSdfotDMgOX4jHk+y9RvVBE6dWT9Tg3IGd/On1T+2DPNIHuZaFaG3K7b6ZMlDmP4dA1yIDjXwx02V3EBWOdyMJoMBxClqzXVslDsNO1r7v8tiQSNdJpRAI=
+    - secure: xBrOffWfsodEMZe86adKxI6OS5XGL7L14J+LjJvnK1ngsB5/oTrX0VAaMgcmPGwfKgWU96Jjvnv68pABXBmf4NHislUn0BQiCCK0RIXJ03zv3QZ6kCNzjs9XoMlUlEptHAzQIKq45dtUbWIWK5sjOY9SZXzAezV8m4QUyOEZL2Q9B19JIohFx8FT/570Db4CmEnTz0ZTYdi8pRCw8ImEFCpGq7BVxu4rh/rsggumzUBRiyS+obHY4nsFK9C5KnzcAulF5Ahix9XhRoHCUyTOqHX4e07BAp8DO/upr/bt91PbnUhTQCYtKeDIW+mNCxzdSx2E4b1XGD6rLP2u0nQljd0+rZvbiwrSB817gorzUb0ICvm2khvZogXxqblWN8AqCZf7KJtKAWRvo33ojLIaJLeuHIO6ovWTjRnu2MjvsmzBMATk2/oS/N1PsTrC5jyLh0LBmUlFi+sNCZcyDWxoTdvjIUcszpYRlc6JZiVb/tAOknwvAQ8R+0v8+HXWkng2iy7FegipyOELOV45U5VqxLgZu3f2VslP7zmO8WNC18pGLqi/pz+/Gip3ZyEMvMWVdTmW+EYC07FmvwYPY21wxY+Ih4gBKUndmSEg8s0zpkFP7KOSX35ZQWVemLc9n4yk3Edwz7a46vPMK60Z8/hF5mpErvB5lWCyuEjTJFP3XUo=
