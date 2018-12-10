@@ -5,9 +5,11 @@ dist: trusty
 services:
 - docker
 script:
+- export BUILD_TS=$(date +%Y%m%d-%H%M%S)
 - mvn clean verify
 - echo "$DOCKER_PASSWORD" | docker login quay.io -u "$DOCKER_USERNAME" --password-stdin
-- docker build -t quay.io/woditschka/tfa-web:latest .
+- docker build -t quay.io/woditschka/tfa-web:$BUILD_TS -t quay.io/woditschka/tfa-web:latest .
+- docker push quay.io/woditschka/tfa-web:$BUILD_TS
 - docker push quay.io/woditschka/tfa-web:latest
 env:
   global:

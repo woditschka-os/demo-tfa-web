@@ -1,5 +1,7 @@
 FROM quay.io/woditschka/openjdk:11
 
+LABEL quay.expires-after="14d"
+
 WORKDIR /opt
 
 ENV JAVA_OPTS=""
